@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.sql.DataSource;
 import java.sql.*;
@@ -49,6 +50,15 @@ public class StudentRepository {
         Student student = findById(id);
         session.delete(student);
     }
+
+
+
+    public long getStudentCount() {
+        Session session = sessionFactory.getCurrentSession();
+        Long count = (Long) session.createQuery("SELECT COUNT(*) FROM Student").uniqueResult();
+        return count != null ? count : 0;
+    }
+
 
 
 }

@@ -46,6 +46,10 @@ public class StudentService {
         studentRepository.deleteById(id);
     }
 
+    public long getStudentCount() {
+        return studentRepository.getStudentCount();
+    }
+
     private void validateDateOfBirth(LocalDate dateOfBirth) throws ValidationException {
         if (dateOfBirth == null) {
             throw new ValidationException("Date of Birth is required");
